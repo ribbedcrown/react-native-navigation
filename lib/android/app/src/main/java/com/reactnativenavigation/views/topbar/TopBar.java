@@ -261,7 +261,9 @@ public class TopBar extends AppBarLayout implements ScrollEventListener.ScrollAw
     }
 
     public void clearTopTabs() {
+        setTopTabsVisible(false);
         topTabs.clear();
+        setHeight();
     }
 
     @VisibleForTesting

@@ -49,7 +49,8 @@ public class TopTabs extends TabLayout {
             }
             setVisibility(VISIBLE);
         } else {
-            topBar.removeView(this);
+            setVisibility(GONE);
+            // topBar.removeView(this);
         }
     }
 

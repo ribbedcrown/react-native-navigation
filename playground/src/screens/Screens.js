@@ -3,7 +3,7 @@ const SideMenuLeft = 'SideMenuLeft';
 const SideMenuCenter = 'SideMenuCenter';
 const SideMenuRight = 'SideMenuRight';
 const StatusBarOptions = 'StatusBarOptions';
-const StatusBarFirstTab = 'StatusBarFirstTab'
+const StatusBarFirstTab = 'StatusBarFirstTab';
 const Pushed = 'Pushed';
 
 module.exports = {

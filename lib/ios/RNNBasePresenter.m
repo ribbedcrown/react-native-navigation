@@ -5,20 +5,27 @@
 #import "UIViewController+LayoutProtocol.h"
 #import "DotIndicatorOptions.h"
 #import "RNNDotIndicatorPresenter.h"
+#import "RCTConvert+Modal.h"
 
 @interface RNNBasePresenter ()
 @property(nonatomic, strong) RNNDotIndicatorPresenter* dotIndicatorPresenter;
 @end
 @implementation RNNBasePresenter
 
--(instancetype)initWithDefaultOptions:(RNNNavigationOptions *)defaultOptions {
+- (instancetype)initWithDefaultOptions:(RNNNavigationOptions *)defaultOptions {
     self = [super init];
     _defaultOptions = defaultOptions;
     self.dotIndicatorPresenter = [[RNNDotIndicatorPresenter alloc] initWithDefaultOptions:_defaultOptions];
     return self;
 }
 
-- (void)boundViewController:(UIViewController *)boundViewController {
+- (instancetype)initWithComponentRegistry:(RNNReactComponentRegistry *)componentRegistry defaultOptions:(RNNNavigationOptions *)defaultOptions {
+    self = [self initWithDefaultOptions:defaultOptions];
+    _componentRegistry = componentRegistry;
+    return self;
+}
+
+- (void)bindViewController:(UIViewController *)boundViewController {
     self.boundComponentId = boundViewController.layoutInfo.componentId;
     _boundViewController = boundViewController;
 }
@@ -27,8 +34,23 @@
     _defaultOptions = defaultOptions;
 }
 
-- (void)applyOptionsOnInit:(RNNNavigationOptions *)initialOptions {
+- (void)componentDidAppear {
+    
+}
 
+- (void)componentDidDisappear {
+    
+}
+
+- (void)applyOptionsOnInit:(RNNNavigationOptions *)initialOptions {
+    UIViewController* viewController = self.boundViewController;
+    RNNNavigationOptions *withDefault = [initialOptions withDefault:[self defaultOptions]];
+    [viewController setModalPresentationStyle:[RCTConvert UIModalPresentationStyle:[withDefault.modalPresentationStyle getWithDefaultValue:@"default"]]];
+    [viewController setModalTransitionStyle:[RCTConvert UIModalTransitionStyle:[withDefault.modalTransitionStyle getWithDefaultValue:@"coverVertical"]]];
+    
+    if (@available(iOS 13.0, *)) {
+        viewController.modalInPresentation = ![withDefault.modal.swipeToDismiss getWithDefaultValue:YES];
+    }
 }
 
 - (void)applyOptionsOnViewDidLayoutSubviews:(RNNNavigationOptions *)options {
@@ -94,8 +116,10 @@
 }
 
 - (void)mergeOptions:(RNNNavigationOptions *)options resolvedOptions:(RNNNavigationOptions *)resolvedOptions {
-    UIViewController *viewController = self.boundViewController;
-    if (options.bottomTab.badge.hasValue && [viewController.parentViewController isKindOfClass:[UITabBarController class]]) {
+    UIViewController* viewController = self.boundViewController;
+    RNNNavigationOptions* withDefault = (RNNNavigationOptions *) [[resolvedOptions withDefault:_defaultOptions] overrideOptions:options];
+    
+    if (options.bottomTab.badge.hasValue) {
         [viewController setTabBarItemBadge:options.bottomTab.badge.get];
     }
 
@@ -108,44 +132,37 @@
     }
 
     if (options.bottomTab.text.hasValue) {
-        RNNNavigationOptions *buttonsResolvedOptions = (RNNNavigationOptions *) [resolvedOptions overrideOptions:options];
-        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:buttonsResolvedOptions.bottomTab];
+        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:withDefault.bottomTab];
         viewController.tabBarItem = tabItem;
     }
 
     if (options.bottomTab.icon.hasValue) {
-        RNNNavigationOptions *buttonsResolvedOptions = (RNNNavigationOptions *) [resolvedOptions overrideOptions:options];
-        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:buttonsResolvedOptions.bottomTab];
+        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:withDefault.bottomTab];
         viewController.tabBarItem = tabItem;
     }
 
     if (options.bottomTab.selectedIcon.hasValue) {
-        RNNNavigationOptions *buttonsResolvedOptions = (RNNNavigationOptions *) [resolvedOptions overrideOptions:options];
-        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:buttonsResolvedOptions.bottomTab];
+        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:withDefault.bottomTab];
         viewController.tabBarItem = tabItem;
     }
 
     if (options.bottomTab.textColor.hasValue) {
-        RNNNavigationOptions *buttonsResolvedOptions = (RNNNavigationOptions *) [resolvedOptions overrideOptions:options];
-        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:buttonsResolvedOptions.bottomTab];
+        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:withDefault.bottomTab];
         viewController.tabBarItem = tabItem;
     }
 
     if (options.bottomTab.selectedTextColor.hasValue) {
-        RNNNavigationOptions *buttonsResolvedOptions = (RNNNavigationOptions *) [resolvedOptions overrideOptions:options];
-        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:buttonsResolvedOptions.bottomTab];
+        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:withDefault.bottomTab];
         viewController.tabBarItem = tabItem;
     }
 
     if (options.bottomTab.iconColor.hasValue) {
-        RNNNavigationOptions *buttonsResolvedOptions = (RNNNavigationOptions *) [resolvedOptions overrideOptions:options];
-        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:buttonsResolvedOptions.bottomTab];
+        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:withDefault.bottomTab];
         viewController.tabBarItem = tabItem;
     }
 
     if (options.bottomTab.selectedIconColor.hasValue) {
-        RNNNavigationOptions *buttonsResolvedOptions = (RNNNavigationOptions *) [resolvedOptions overrideOptions:options];
-        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:buttonsResolvedOptions.bottomTab];
+        UITabBarItem *tabItem = [RNNTabBarItemCreator updateTabBarItem:viewController.tabBarItem bottomTabOptions:withDefault.bottomTab];
         viewController.tabBarItem = tabItem;
     }
 }

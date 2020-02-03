@@ -7,15 +7,17 @@ const StatusBarFirstTab = 'StatusBarFirstTab'
 const Pushed = 'Pushed';
 
 module.exports = {
-  ExternalComponent: 'ExternalComponent',
-  ContextScreen: 'ContextScreen',
-  Pushed,
-  Layouts: 'Layouts',
-  Options: 'Options',
   Buttons: 'Buttons',
-  Stack: 'Stack',
-  Modal: 'Modal',
+  CocktailDetailsScreen: 'CocktailDetailsScreen',
+  CocktailsListScreen: 'CocktailsListScreen',
+  ContextScreen: 'ContextScreen',
+  ExternalComponent: 'ExternalComponent',
   FullScreenModal: 'FullScreenModal',
+  Layouts: 'Layouts',
+  Modal: 'Modal',
+  Options: 'Options',
+  Pushed,
+  Stack: 'Stack',
   SetRoot: 'SetRoot',
   Overlay: 'Overlay',
   OverlayAlert: 'OverlayAlert',
@@ -122,7 +124,7 @@ module.exports = {
                 }
               }))
             ]
-          } 
+          }
         }
       ]
     }

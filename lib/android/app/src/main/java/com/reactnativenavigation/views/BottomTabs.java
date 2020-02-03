@@ -7,7 +7,6 @@ import android.widget.LinearLayout;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-import com.reactnativenavigation.BuildConfig;
 import com.reactnativenavigation.R;
 import com.reactnativenavigation.parse.LayoutDirection;
 
@@ -24,7 +23,6 @@ public class BottomTabs extends AHBottomNavigation {
         super(context);
         setId(R.id.bottomTabs);
         setBehaviorTranslationEnabled(false);
-        if (BuildConfig.DEBUG) setContentDescription("BottomTabs");
     }
 
     public void disableItemsCreation() {
@@ -62,6 +60,12 @@ public class BottomTabs extends AHBottomNavigation {
     @Override
     public void setTitleState(TitleState titleState) {
         if (getTitleState() != titleState) super.setTitleState(titleState);
+    }
+
+    @Override
+    public void setBackgroundColor(int color) {
+        super.setBackgroundColor(color);
+        if (getDefaultBackgroundColor() != color) setDefaultBackgroundColor(color);
     }
 
     public void setText(int index, String text) {

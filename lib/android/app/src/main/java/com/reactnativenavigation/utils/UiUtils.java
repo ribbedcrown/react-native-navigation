@@ -96,6 +96,10 @@ public class UiUtils {
         return 48;
     }
 
+    public static int inferTopTabsIndicatorHeight () {
+        return 2;
+    }
+
     public static float dpToPx(Context context, float dp) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();

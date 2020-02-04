@@ -202,6 +202,14 @@ public class TopBar extends AppBarLayout implements ScrollEventListener.ScrollAw
         topTabs.setLayoutParams(topTabs.getLayoutParams());
     }
 
+    public void setTopTabsRippleColor(Colour rippleColor) {
+        topTabs.setTopTabsRippleColor(rippleColor);
+    }
+
+    public void setTopTabsIndicator(int height, Colour indicatorColor) {
+        topTabs.setTopTabsIndicator(height, indicatorColor);
+    }
+
     public void setBackButton(TitleBarButtonController backButton) {
         titleBar.setBackButton(backButton);
     }

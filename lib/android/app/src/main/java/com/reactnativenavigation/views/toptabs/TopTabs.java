@@ -38,6 +38,14 @@ public class TopTabs extends TabLayout {
         styleHelper.applyTopTabsFontSize(fontSize);
     }
 
+    public void setTopTabsRippleColor(Colour rippleColor) {
+        styleHelper.setTopTabsRippleColor(rippleColor);
+    }
+
+    public void setTopTabsIndicator(int height, Colour indicatorColor) {
+        styleHelper.setTopTabsIndicator(height, indicatorColor);
+    }
+
     public int isVisible() {
         return getVisibility();
     }
@@ -50,7 +58,6 @@ public class TopTabs extends TabLayout {
             setVisibility(VISIBLE);
         } else {
             setVisibility(GONE);
-            // topBar.removeView(this);
         }
     }
 

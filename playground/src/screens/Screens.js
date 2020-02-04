@@ -105,7 +105,7 @@ module.exports = {
       options: {
         topBar: {
           background: {
-            color: 'red'
+            color: 'white'
           }
         }
       },
@@ -113,16 +113,26 @@ module.exports = {
         {
           topTabs: {
             children: [
-              stack(component(Pushed, {
-                topTab: {
-                  title: 'Tab1'
-                }
-              })),
-              stack(component(Pushed, {
-                topTab: {
-                  title: 'Tab2'
-                }
-              }))
+              {
+                stack: {
+                  children: [component(Pushed)],
+                  options: {
+                    topTab: {
+                      title: 'Tab1',
+                    },
+                  },
+                },
+              },
+              {
+                stack: {
+                  children: [component(Pushed)],
+                  options: {
+                    topTab: {
+                      title: 'Tab2',
+                    },
+                  },
+                },
+              }
             ]
           }
         }

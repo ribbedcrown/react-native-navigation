@@ -452,6 +452,16 @@ export interface OptionsFab {
     size?: number;
     actions?: OptionsFab[];
 }
+export interface OptionsTopTabs {
+    visible?: boolean;
+    fontSize?: number;
+    height?: number;
+    selectedTabColor?: Color;
+    unselectedTabColor?: Color;
+    rippleColor?: Color;
+    indicatorColor?: Color;
+    indicatorHeight?: number;
+}
 export interface OptionsBottomTabs {
     /**
      * Show or hide the bottom tabs
@@ -915,6 +925,10 @@ export interface Options {
      */
     topBar?: OptionsTopBar;
     fab?: OptionsFab;
+    /**
+     * Configure the top tabs
+     */
+    topTabs?: OptionsTopTabs;
     /**
      * Configure the bottom tabs
      */

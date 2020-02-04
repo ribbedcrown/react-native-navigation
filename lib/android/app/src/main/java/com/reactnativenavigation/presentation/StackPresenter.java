@@ -325,6 +325,8 @@ public class StackPresenter {
         topBar.applyTopTabsFontSize(options.fontSize);
         topBar.setTopTabsVisible(options.visible.isTrueOrUndefined());
         topBar.setTopTabsHeight(options.height.get(UiUtils.inferTopTabsHeightFromTabs()));
+        topBar.setTopTabsRippleColor(options.rippleColor);
+        topBar.setTopTabsIndicator(options.indicatorHeight.get(UiUtils.inferTopTabsIndicatorHeight()), options.indicatorColor);
     }
 
     private void applyTopTabOptions(TopTabOptions topTabOptions) {
@@ -483,6 +485,8 @@ public class StackPresenter {
         if (options.fontSize.hasValue()) topBar.applyTopTabsFontSize(options.fontSize);
         if (options.visible.hasValue()) topBar.setTopTabsVisible(options.visible.isTrue());
         if (options.height.hasValue()) topBar.setTopTabsHeight(options.height.get(UiUtils.inferTopTabsHeightFromTabs()));
+        if (options.rippleColor.hasValue()) topBar.setTopTabsRippleColor(options.rippleColor);
+        if (options.indicatorHeight.hasValue() && options.indicatorColor.hasValue()) topBar.setTopTabsIndicator(options.indicatorHeight.get(UiUtils.inferTopTabsIndicatorHeight()), options.indicatorColor);
     }
 
     private void mergeTopTabOptions(TopTabOptions topTabOptions) {

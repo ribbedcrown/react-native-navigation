@@ -12,6 +12,13 @@ const setDefaultOptions = () => Navigation.setDefaultOptions({
     orientation: ['portrait'],
     direction: 'locale'
   },
+  topTabs: {
+    selectedTabColor: 'red',
+    unselectedTabColor: 'black',
+    indicatorColor: 'red',
+    indicatorHeight: 1,
+    rippleColor: 'rgba(241,39,39,0.05)'
+  },
   bottomTabs: {
     titleDisplayMode: 'alwaysShow'
   },
@@ -20,7 +27,7 @@ const setDefaultOptions = () => Navigation.setDefaultOptions({
     selectedTextColor: Colors.primary
   },
   animations: {
-    ...useSlowOpenScreenAnimations ? slowOpenScreenAnimations : {}   
+    ...useSlowOpenScreenAnimations ? slowOpenScreenAnimations : {}
   },
   modalPresentationStyle: 'fullScreen'
 });

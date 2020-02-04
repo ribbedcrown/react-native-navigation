@@ -22,6 +22,9 @@ public class TopTabsOptions {
     @NonNull public Number fontSize = new NullNumber();
     @NonNull public Bool visible = new NullBool();
     @NonNull public Number height = new NullNumber();
+    @NonNull public Colour rippleColor = new NullColor();
+    @NonNull public Colour indicatorColor = new NullColor();
+    @NonNull public Number indicatorHeight = new NullNumber();
 
     public static TopTabsOptions parse(@Nullable JSONObject json) {
         TopTabsOptions result = new TopTabsOptions();
@@ -31,6 +34,9 @@ public class TopTabsOptions {
         result.fontSize = NumberParser.parse(json, "fontSize");
         result.visible = BoolParser.parse(json, "visible");
         result.height = NumberParser.parse(json, "height");
+        result.rippleColor = ColorParser.parse(json, "rippleColor");
+        result.indicatorColor = ColorParser.parse(json, "indicatorColor");
+        result.indicatorHeight = NumberParser.parse(json, "indicatorHeight");
         return result;
     }
 
@@ -40,6 +46,9 @@ public class TopTabsOptions {
         if (other.fontSize.hasValue()) fontSize = other.fontSize;
         if (other.visible.hasValue()) visible = other.visible;
         if (other.height.hasValue()) height = other.height;
+        if (other.rippleColor.hasValue()) rippleColor = other.rippleColor;
+        if (other.indicatorColor.hasValue()) indicatorColor = other.indicatorColor;
+        if (other.indicatorHeight.hasValue()) indicatorHeight = other.indicatorHeight;
     }
 
     void mergeWithDefault(TopTabsOptions defaultOptions) {
@@ -48,5 +57,8 @@ public class TopTabsOptions {
         if (!fontSize.hasValue()) fontSize = defaultOptions.fontSize;
         if (!visible.hasValue()) visible = defaultOptions.visible;
         if (!height.hasValue()) height = defaultOptions.height;
+        if (!rippleColor.hasValue()) rippleColor = defaultOptions.rippleColor;
+        if (!indicatorColor.hasValue()) indicatorColor = defaultOptions.indicatorColor;
+        if (!indicatorHeight.hasValue()) indicatorHeight = defaultOptions.indicatorHeight;
     }
 }
